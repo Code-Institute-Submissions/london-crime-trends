@@ -1,0 +1,30 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $base-title-font-family;
+}
+
+.site-title {
+  line-height: 3rem;
+  color: white;
+}
+
+.site-title.small-device {
+  margin-top: -5rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+p, a {
+  font-family: $base-font-family;
+  font-size:22px;
+}
+
+.sidebar-button {
+  font-family: $base-title-font-family;
+  font-size: 26px;
+  line-height: 26px;
+}

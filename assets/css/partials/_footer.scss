@@ -1,0 +1,18 @@
+.footer-tops {
+  float:left; min-height:20px;
+}
+
+.copyright {
+  background-color: $logo-background;
+  color: white;
+  text-align: center;
+  padding: 40px 0 20px 0;
+}
+
+$i: 0;
+@each $line, $col in ($line-colours) {
+  .footer-tops.f#{$i} {
+    background-color: $col;
+  }
+  $i: $i + 1;
+}

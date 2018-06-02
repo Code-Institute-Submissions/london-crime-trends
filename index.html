@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>London Crime Trends</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Bellefair|Tajawal:500,900" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.min.css">
+</head>
+
+<body>
+  <header class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12 col-lg-4 p-0 logo">
+        <img src="assets/images/logo.svg" alt="Logo">
+      </div>
+      <div class="col-12 col-lg-8 pl-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary pb-0 pr-0">
+          <h1 class="site-title d-none d-lg-inline-block">London Crime Trends</h1>
+          <h1 class="site-title small-device d-inline-block d-lg-none">London<br>Crime<br>Trends</h1>
+          <button class="navbar-toggler d-inline-block d-lg-none mob-toggle" type="button" data-toggle="collapse" data-target="#togglemenu" aria-controls="togglemenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="togglemenu">
+            <ul class="navbar-nav mr-auto d-block d-lg-none mob-menu">
+              <li class="nav-item tube-stop">
+                <button type="button" class="btn sidebar-button bakerloo-button" lineid="bakerloo">Bakerloo</button>
+              </li>
+              <li class="nav-item tube-stop">
+                <button type="button" class="btn sidebar-button central-button" lineid="central">Central</button>
+              </li>
+              <li class="nav-item tube-stop">
+                <button type="button" class="btn sidebar-button circle-button" lineid="circle">Circle</button>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button district-button" lineid="district">District</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button hammersmith-city-button" lineid="hammersmith-city">Hammersmith & City</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button jubilee-button" lineid="jubilee">Jubilee</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button metropolitan-button" lineid="metropolitan">Metropolitan</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button northern-button" lineid="northern">Northern</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button picadilly-button" lineid="piccadilly">Piccadilly</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button victoria-button" lineid="victoria">Victoria</button>
+                </li>
+                <li class="nav-item tube-stop">
+                  <button type="button" class="btn sidebar-button waterloo-city-button" lineid="waterloo-city">Waterloo & City</button>
+                </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid pl-0">
+    <div class="row">
+      <div class="col-12 col-lg-4 d-none d-lg-inline-block dashboard-sidebar pr-0">
+        <button type="button" class="btn sidebar-button bakerloo-button active" lineid="bakerloo">Bakerloo</button>
+        <button type="button" class="btn sidebar-button central-button" lineid="central">Central</button>
+        <button type="button" class="btn sidebar-button circle-button" lineid="circle">Circle</button>
+        <button type="button" class="btn sidebar-button district-button" lineid="district">District</button>
+        <button type="button" class="btn sidebar-button hammersmith-city-button" lineid="hammersmith-city">Hammersmith & City</button>
+        <button type="button" class="btn sidebar-button jubilee-button" lineid="jubilee">Jubilee</button>
+        <button type="button" class="btn sidebar-button metropolitan-button" lineid="metropolitan">Metropolitan</button>
+        <button type="button" class="btn sidebar-button northern-button" lineid="northern">Northern</button>
+        <button type="button" class="btn sidebar-button picadilly-button" lineid="piccadilly">Piccadilly</button>
+        <button type="button" class="btn sidebar-button victoria-button" lineid="victoria">Victoria</button>
+        <button type="button" class="btn sidebar-button waterloo-city-button" lineid="waterloo-city">Waterloo & City</button>
+      </div>
+      <div class="col-12 col-lg-8 dashboard-content">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div id="stops"></div>
+            <div id="graph1"></div>
+            <div id="graph2"></div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div id="map"></div>
+          </div>
+        </div>
+        <div id="error"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="copyright">Julian Garcia &copy; 2018</div>
+  </footer>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.4/dc.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="assets/js/transport_api.js" charset="utf-8"></script>
+  <script src="assets/js/police_api.js" charset="utf-8"></script>
+  <script src="assets/js/gmap.js" charset="utf-8"></script>
+  <script src="assets/js/graphs.js" charset="utf-8"></script>
+  <script src="assets/js/ui.js" charset="utf-8"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6d0X75fZt-vOGynM8JDepHdxeTavOGAQ&callback=initMap"></script>
+</body>
+
+</html>

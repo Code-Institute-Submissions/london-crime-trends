@@ -1,0 +1,16 @@
+$base-title-font-family: 'Tajawal', sans-serif;
+$base-font-family: 'Bellefair', serif;
+
+@import "../modules/all";
+
+$line-colours: (bakerloo: $bakerloo-colour,
+                central: $central-colour,
+                circle: $circle-colour,
+                district: $district-colour,
+                hammersmith-city: $hammersmith-city-colour,
+                jubilee: $jubilee-colour,
+                metropolitan: $metropolitan-colour,
+                northern: $northern-colour,
+                picadilly: $picadilly-colour,
+                victoria: $victoria-colour,
+                waterloo-city: $waterloo-city-colour);

@@ -1,0 +1,13 @@
+@each $line, $col in ($line-colours) {
+  .sidebar-button.#{$line}-button {
+    @include sidebar-button($col, white);
+  }
+}
+
+.dashboard-sidebar button:nth-child(odd) {
+  background-color: $sidebar-button-odd;
+}
+
+.dashboard-sidebar button:nth-child(even) {
+  background-color: $sidebar-button-even;
+}
