@@ -5,3 +5,27 @@
 #map {
   min-height: 300px;
 }
+
+#pie-chart {
+  min-height: 250px;
+}
+
+#pie-chart.dc-chart .pie-slice {
+    fill: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#pie-chart.dc-chart .pie-slice :hover {
+    fill-opacity: .8;
+}
+
+#pie-chart.dc-chart .selected path {
+    stroke-width: 3;
+    stroke: #2C3E50;
+    fill-opacity: 1;
+}
+
+#line-chart path.line {
+  fill: #efefef;
+}

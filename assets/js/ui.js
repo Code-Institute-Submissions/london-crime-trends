@@ -5,6 +5,7 @@ $(document).ready(function() {
     $(".mob-menu .sidebar-button").removeClass("active");
     $(".mob-menu .sidebar-button[lineid='" + $(this).attr("lineid") + "']").addClass('active');
     $("#stops").html("");
+    clear_graphs();
     fetchTFLdata($(this).attr("lineid"));
   });
 
@@ -15,6 +16,7 @@ $(document).ready(function() {
     $(".dashboard-sidebar").children(".sidebar-button").removeClass("active");
     $(".dashboard-sidebar").children(".sidebar-button[lineid='" + $(this).attr("lineid") + "']").addClass('active');
     $("#stops").html("");
+    clear_graphs();
     fetchTFLdata($(this).attr("lineid"));
   });
 
@@ -27,23 +29,44 @@ $(document).ready(function() {
 
   var min_main_height = $(window).height() - $("header").outerHeight() - $("footer").outerHeight();
   $("main").css("min-height",min_main_height+"px");
-  alert(min_main_height);
+
+  function resize_svg() {
+      $(".chart").each(function() {
+          var graph_width = $(this).outerWidth() - 20;
+
+          $(this).children("div:first").width(graph_width);
+          $(this).children("div:first svg").width(graph_width);
+      });
+      dc.renderAll();
+  }
+
+  resize_svg();
+
+  $(window).resize(function() {
+    resize_svg();
+  });
 
   fetchTFLdata("bakerloo");
 });
 
-function render_gmap() {
+function clear_graphs() {
+  $("#crime-selector").empty();
+  $("#force-selector").empty();
+  $("#pie-chart").empty();
+  $("#line-chart").empty();
+}
+
+function refresh_dashboard_content() {
+  // Render Map
   if ($("#station_dropdown").val() != "0") {
+    // Determine coordinates of the tube station
     lat = parseFloat($("#station_dropdown").find('option:selected').attr("lat"));
     lon = parseFloat($("#station_dropdown").find('option:selected').attr("lon"));
     initMap(lat, lon);
-  }
-}
-
-function get_crime_data() {
-  if ($("#station_dropdown").val() != "0") {
-    lat = parseFloat($("#station_dropdown").find('option:selected').attr("lat"));
-    lon = parseFloat($("#station_dropdown").find('option:selected').attr("lon"));
-    FetchStreetCrimeData(lat, lon);
+    // Clear graphs
+    clear_graphs();
+    // Get Street Crime data and render graphs, referencing tube line colour for the line chart
+    col = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
+    var street_crimes = fetchStreetCrimeData(lat, lon, col);
   }
 }

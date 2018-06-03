@@ -15,7 +15,7 @@ function fetchTFLdata(lineid) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        $("#error").html(`<h4>No info found</h4>`);
+        $("#error").html(`<h4>TFL data not found</h4>`);
       } else if (errorResponse.status == 403) {
         var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000);
         $("#error").html(`<h4>Too many requests. Please wait until ${resetTime.toLocaleTimeString()}</h4>`);
@@ -35,7 +35,7 @@ function fetchLineStops(station_id) {
       var stations = response;
       // console.log(stations);
 
-      $("#stops").append(`<select class="form-control stations" onchange="render_gmap();get_crime_data();" id="station_dropdown"></select>`);
+      $("#stops").append(`<select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select>`);
       $("#station_dropdown").append("<option value='0'>Select a tube station</option>");
       stations.forEach(function(element) {
         $("#station_dropdown").append(`<option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">${element.commonName}</option>`);
