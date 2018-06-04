@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $(".dashboard-sidebar .sidebar-button").click(function() {
+    $("body").scrollTop(0);
     reset_dashboard();
     initMap(0,0);
     $(this).addClass("active");
@@ -14,6 +15,7 @@ $(document).ready(function() {
   });
 
   $(".mob-menu .sidebar-button").click(function() {
+    $("body").scrollTop(0);
     reset_dashboard();
     initMap(0,0);
     $(".mob-menu .sidebar-button").removeClass("active");
@@ -77,14 +79,15 @@ function reset_dashboard() {
 }
 
 function refresh_dashboard_content() {
-  // Render Map
   if ($("#station_dropdown").val() != "0") {
+    $("body").scrollTop(0);
     // Determine coordinates of the tube station
     lat = parseFloat($("#station_dropdown").find('option:selected').attr("lat"));
     lon = parseFloat($("#station_dropdown").find('option:selected').attr("lon"));
     // Clear graphs
     clear_divs();
     $("#loading").html(`<img src="assets/images/loading.gif" width="100" />`);
+    // Render Map
     initMap(lat, lon);
     // Get Street Crime data and render graphs, referencing tube line colour for the line chart
     col = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
