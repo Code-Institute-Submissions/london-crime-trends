@@ -12,10 +12,22 @@ function renderGraphs(crime_data, col) {
   crime_line_chart(ndx, col);
   crime_pie_chart(ndx);
 
+  reset_titles();
   dc.renderAll();
+  load_titles_styles();
+}
+
+function reset_titles() {
+  $("#pie-chart h4").remove();
+  $("#line-chart h4").remove();
+  $("div#dropdown-selector").remove();
+}
+
+function load_titles_styles() {
   $("#loading").empty();
-  $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Streets</h4>`);
+  $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Locations</h4>`);
   $("#line-chart").prepend("<h4>Crimes over 11/12 months</h4>");
+  $(".dc-select-menu").wrap(`<div id="dropdown-selector"></div>`);
 }
 
 function crime_selector(ndx) {
@@ -52,6 +64,7 @@ function crime_pie_chart(ndx) {
     .innerRadius(40)
     .cap(10)
     .renderLabel(false)
+    .transitionDuration(1000)
     .legend(dc.legend().x(170).y(0).gap(5));
 }
 
@@ -80,6 +93,7 @@ function crime_line_chart(ndx, col) {
     .elasticX(true)
     .elasticY(true)
     .colors(col)
+    .transitionDuration(1000)
     .renderlet(function(chart){
         chart.selectAll("g.x text")
           .attr('dx', '-35')

@@ -15,15 +15,24 @@
   .placeholder-icon-#{$line} {
     color: $col;
   }
+  .dropdown-#{$line} {
+    background-color: $col !important;
+  }
 }
 
 #map {
-  min-height: 280px;
+  min-height: 150px;
 }
 
 #map, .chart {
   margin-bottom: 30px;
   text-align: center;
+}
+
+@media (min-width: 767px) {
+  #map {
+    min-height: 280px;
+  }
 }
 
 #crime-selector, #force-selector {

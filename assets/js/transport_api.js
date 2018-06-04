@@ -35,11 +35,12 @@ function fetchLineStops(station_id) {
       var stations = response;
       // console.log(stations);
 
-      $("#stops").append(`<select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select>`);
-      $("#station_dropdown").append("<option value='0'>Select a tube station</option>");
+      $("#stops").append(`<div id="dropdown"><select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select></div>`);
+      $("#station_dropdown").append("<option value='0' disabled selected>Select a tube station</option>");
       stations.forEach(function(element) {
         $("#station_dropdown").append(`<option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">${element.commonName}</option>`);
       });
+      $("#dropdown").addClass("dropdown-" + $(".dashboard-sidebar .sidebar-button.active").attr("lineid"));
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {

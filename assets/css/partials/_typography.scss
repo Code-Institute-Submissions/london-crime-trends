@@ -37,3 +37,15 @@ p, a {
   font-family: $base-font-family;
   font-size:16px;
 }
+
+.dashboard-content #dropdown select,
+.dashboard-content #dropdown-selector select {
+  font-family: $base-font-family;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.dashboard-content #dropdown-selector select {
+  font-size: 14px;
+}
