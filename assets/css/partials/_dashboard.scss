@@ -29,12 +29,6 @@
   text-align: center;
 }
 
-@media (min-width: 767px) {
-  #map {
-    min-height: 280px;
-  }
-}
-
 #crime-selector, #force-selector {
   float:left;
   margin-right:10px;

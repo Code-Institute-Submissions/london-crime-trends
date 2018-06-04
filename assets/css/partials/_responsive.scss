@@ -1,0 +1,9 @@
+@media (min-width: 767px) {
+  #map {
+    min-height: 280px;
+  }
+  .dropdown {
+     width: calc(50% - 10px);
+     margin-bottom:0;
+  }
+}

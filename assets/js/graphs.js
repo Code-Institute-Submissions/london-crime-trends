@@ -94,7 +94,7 @@ function crime_line_chart(ndx, col) {
     .elasticY(true)
     .colors(col)
     .transitionDuration(1000)
-    .renderlet(function(chart){
+    .on("renderlet", function(chart){
         chart.selectAll("g.x text")
           .attr('dx', '-35')
           .attr('dy', '0')
