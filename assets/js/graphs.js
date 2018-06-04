@@ -13,6 +13,9 @@ function renderGraphs(crime_data, col) {
   crime_pie_chart(ndx);
 
   dc.renderAll();
+  $("#loading").empty();
+  $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Streets</h4>`);
+  $("#line-chart").prepend("<h4>Crimes over 11/12 months</h4>");
 }
 
 function crime_selector(ndx) {
@@ -21,7 +24,8 @@ function crime_selector(ndx) {
 
   dc.selectMenu("#crime-selector")
     .dimension(dim)
-    .group(group);
+    .group(group)
+    .promptText('Type of Crime');
 }
 
 function force_selector(ndx) {
@@ -30,7 +34,8 @@ function force_selector(ndx) {
 
   dc.selectMenu("#force-selector")
     .dimension(dim)
-    .group(group);
+    .group(group)
+    .promptText('Police Force');
 }
 
 function crime_pie_chart(ndx) {
@@ -62,7 +67,7 @@ function crime_line_chart(ndx, col) {
     .width(null)
     .height(250)
     .margins({
-      top: 20,
+      top: 5,
       right: 0,
       bottom: 100,
       left: 60
@@ -77,8 +82,8 @@ function crime_line_chart(ndx, col) {
     .colors(col)
     .renderlet(function(chart){
         chart.selectAll("g.x text")
-          .attr('dx', '-55')
-          .attr('dy', '-10')
+          .attr('dx', '-35')
+          .attr('dy', '0')
           .attr('transform', "rotate(-65)");
       })
     .yAxis().ticks(4);

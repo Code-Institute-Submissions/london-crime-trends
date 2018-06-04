@@ -51,7 +51,7 @@
                   <button type="button" class="btn sidebar-button northern-button" lineid="northern">Northern</button>
                 </li>
                 <li class="nav-item tube-stop">
-                  <button type="button" class="btn sidebar-button picadilly-button" lineid="piccadilly">Piccadilly</button>
+                  <button type="button" class="btn sidebar-button piccadilly-button" lineid="piccadilly">Piccadilly</button>
                 </li>
                 <li class="nav-item tube-stop">
                   <button type="button" class="btn sidebar-button victoria-button" lineid="victoria">Victoria</button>
@@ -77,26 +77,38 @@
         <button type="button" class="btn sidebar-button jubilee-button" lineid="jubilee">Jubilee</button>
         <button type="button" class="btn sidebar-button metropolitan-button" lineid="metropolitan">Metropolitan</button>
         <button type="button" class="btn sidebar-button northern-button" lineid="northern">Northern</button>
-        <button type="button" class="btn sidebar-button picadilly-button" lineid="piccadilly">Piccadilly</button>
+        <button type="button" class="btn sidebar-button piccadilly-button" lineid="piccadilly">Piccadilly</button>
         <button type="button" class="btn sidebar-button victoria-button" lineid="victoria">Victoria</button>
         <button type="button" class="btn sidebar-button waterloo-city-button" lineid="waterloo-city">Waterloo & City</button>
       </div>
       <div class="col-12 col-lg-8 dashboard-content">
         <div class="row">
-          <div class="col-12 col-xl-6 dashboard-graphs">
+          <div class="col-12 col-md-6">
             <div id="stops"></div>
-            <div id="force-selector" class="chart"></div>
-            <div id="crime-selector" class="chart"></div>
-            <div id="pie-chart" class="chart"></div>
           </div>
-          <div class="col-12 col-xl-6">
-            <div id="map"></div>
+          <div class="col-12 col-md-6">
+            <p class="about text-center text-md-right">Crimes within a 1 mile radius of the selected tube station. Data courtesy of data.police.uk and api.tfl.gov.uk</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-8 col-xl-6 dashboard-graphs">
+            <div id="error"></div>
+            <div id="loading"></div>
+            <div id="force-selector" class="dropdown"></div>
+            <div id="crime-selector" class="dropdown"></div>
+            <div id="pie-chart" class="chart">
+              <i class="fas fa-chart-pie placeholder-icon placeholder-icon-bakerloo"></i>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 col-xl-6 justify-content-center">
+            <div id="map">
+              <i class="fas fa-map-marker-alt placeholder-icon placeholder-icon-bakerloo"></i>
+            </div>
           </div>
           <div class="col-12 dashboard-graphs">
-            <div id="line-chart" class="chart"></div>
+            <div id="line-chart" class="chart">
+              <i class="fas fa-chart-area placeholder-icon placeholder-icon-bakerloo"></i>
+            </div>
           </div>
         </div>
-        <div id="error"></div>
       </div>
     </div>
   </main>

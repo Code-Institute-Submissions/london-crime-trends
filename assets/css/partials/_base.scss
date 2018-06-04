@@ -3,6 +3,11 @@ $base-font-family: 'Bellefair', serif;
 
 @import "../modules/all";
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 $line-colours: (bakerloo: $bakerloo-colour,
                 central: $central-colour,
                 circle: $circle-colour,
@@ -11,6 +16,6 @@ $line-colours: (bakerloo: $bakerloo-colour,
                 jubilee: $jubilee-colour,
                 metropolitan: $metropolitan-colour,
                 northern: $northern-colour,
-                picadilly: $picadilly-colour,
+                piccadilly: $piccadilly-colour,
                 victoria: $victoria-colour,
                 waterloo-city: $waterloo-city-colour);

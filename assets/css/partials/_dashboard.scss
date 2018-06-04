@@ -1,13 +1,39 @@
 .dashboard-content {
-  padding: 30px 40px;
+  padding: 15px 40px;
+}
+
+#loading img {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.placeholder-icon {
+  font-size:160px;
+}
+
+@each $line, $col in ($line-colours) {
+  .placeholder-icon-#{$line} {
+    color: $col;
+  }
 }
 
 #map {
-  min-height: 300px;
+  min-height: 280px;
+}
+
+#map, .chart {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#crime-selector, #force-selector {
+  float:left;
+  margin-right:10px;
 }
 
 #pie-chart {
-  min-height: 250px;
+  clear: both;
+  min-height: 200px;
 }
 
 #pie-chart.dc-chart .pie-slice {
@@ -21,8 +47,7 @@
 }
 
 #pie-chart.dc-chart .selected path {
-    stroke-width: 3;
-    stroke: #2C3E50;
+    fill: #2C3E50;
     fill-opacity: 1;
 }
 
