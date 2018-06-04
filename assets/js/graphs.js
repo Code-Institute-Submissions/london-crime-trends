@@ -4,7 +4,7 @@ function renderGraphs(crime_data, col) {
   crime_data.forEach(function(d) {
     d.date = new Date(d.month);
     d.force = d.location_type + " " + d.location_subtype;
-    d.street  = d.location.street.name;
+    d.street  = d.location.street.name.replace("On or near ","");
   })
 
   crime_selector(ndx);
