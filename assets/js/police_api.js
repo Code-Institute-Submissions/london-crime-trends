@@ -1,5 +1,12 @@
+// Extract street level crime statistics using the uk police api which returns
+// data in JSON format
+
 var police_api_url = "https://data.police.uk/api";
 
+// Retrieve police street crime JSON data and render the data in graph form using d3/dc/crossfilter
+// The street crime api url requires a latitude and longitude to be able to return crimes within a
+// given radius. Coordinates are passed in from the UI which is based on station coordinates extracted
+// from the TFL api
 function fetchStreetCrimeData(lat, lng, col) {
   var dt = new Date();
   var yearmonth = [];
@@ -11,7 +18,8 @@ function fetchStreetCrimeData(lat, lng, col) {
     month = ((dt.getMonth() + 1) < 10 ? '0' : '') + (dt.getMonth() + 1);
     yearmonth.push(year + "-" + month);
   }
-
+  // Set of api requests to retrieve 6 months worth of data. Wait for all api requests to complete
+  // before proceeding to render the data
   $.when(
     $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[0]}`),
     $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[1]}`),

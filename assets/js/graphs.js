@@ -1,17 +1,26 @@
+// Render pie and line charts using JS libraries: d3, dc and crossfilter
+
+// Initialise the cross filter which will allow graphs to adjust dynamically
+// when specific categories are selected by the user. Also call functions that
+// use dc to build the charts. Finally render the graphs.
 function renderGraphs(crime_data, col) {
   var ndx = crossfilter(crime_data);
 
   crime_data.forEach(function(d) {
     d.date = new Date(d.month);
     d.force = d.location_type + " " + d.location_subtype;
+    // The phrase 'on or near' is used very repetitively in the data so
+    // it is being removed to clean up the appearance of the pie chart legend
     d.street  = d.location.street.name.replace("On or near ","");
   })
 
+  // Build dropdowns and pie chart and line chart
   crime_selector(ndx);
   force_selector(ndx);
   crime_line_chart(ndx, col);
   crime_pie_chart(ndx);
 
+  // Finally render the charts and their titles
   reset_titles();
   dc.renderAll();
   load_titles_styles();
@@ -30,6 +39,8 @@ function load_titles_styles() {
   $(".dc-select-menu").wrap(`<div id="dropdown-selector"></div>`);
 }
 
+// Drop down showing various crime categories. Graphs will adjust according
+// to whatever the user selects
 function crime_selector(ndx) {
   var dim = ndx.dimension(dc.pluck('category'));
   var group = dim.group();
@@ -40,6 +51,8 @@ function crime_selector(ndx) {
     .promptText('Type of Crime');
 }
 
+// Drop down showing various police forces. Graphs will adjust according
+// to the police force the user selects
 function force_selector(ndx) {
   var dim = ndx.dimension(dc.pluck('force'));
   var group = dim.group();
@@ -50,6 +63,8 @@ function force_selector(ndx) {
     .promptText('Police Force');
 }
 
+// Pie chart showing a break down of street crime stats by location
+// for the currently selected tube station
 function crime_pie_chart(ndx) {
   var dim = ndx.dimension(dc.pluck('street'));
   var group = dim.group();
@@ -68,6 +83,8 @@ function crime_pie_chart(ndx) {
     .legend(dc.legend().x(170).y(0).gap(5));
 }
 
+// Line chart showing the volume of crimes over the last 5 or 6 months.
+// The police api does not always have up to date data - hence the variance of 5/6 months
 function crime_line_chart(ndx, col) {
   var dim = ndx.dimension(dc.pluck('date'));
   var group = dim.group();
