@@ -5,7 +5,9 @@ on TFL (Transport for London) colours for each line. This was developed as a sin
 
 ## Features
 **Dynamic Content** - All content is dynamic as the TFL tube lines and stations are retrieved using the TFL API.
+
 **Interactive** - The user can select a tube line and a stop within the selected tube line to retrieve street crime statistics.
+
 **Responsive** - Scales up or down according to the device being used to view the site.
 
 ## Languages, Libraries and Frameworks
@@ -36,6 +38,6 @@ on TFL (Transport for London) colours for each line. This was developed as a sin
 To ensure HTML standards are adhered to, the single html page was fed in to the W3C validator and corrected accordingly. To test for site responsiveness, browser responsive mode was used to render the site simulating various screen widths. Tested across various browsers including: Safari, Firefox, Chrome and IE. Also tested on an Apple iPhone SE.
 
 ## Credits
-### Public APIs
+These public APIs were used to populate various UI elements and charts
 - [api.tfl.gov.uk](https://api.tfl.gov.uk)
 - [data.police.uk](https://data.police.uk)
