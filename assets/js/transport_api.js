@@ -11,7 +11,6 @@ function fetchTFLdata(lineid) {
           fetchLineStops(element.id);
         }
       });
-      // console.log(tube_lines);
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
@@ -40,7 +39,7 @@ function fetchLineStops(station_id) {
       stations.forEach(function(element) {
         $("#station_dropdown").append(`<option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">${element.commonName}</option>`);
       });
-      $("#dropdown").addClass("dropdown-" + $(".dashboard-sidebar .sidebar-button.active").attr("lineid"));
+      $("#dropdown").addClass("dropdown-" + $(".dashboard-sidebar .sidebar-button.active").attr('data-lineid'));
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {

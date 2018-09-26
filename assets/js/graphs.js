@@ -26,7 +26,7 @@ function reset_titles() {
 function load_titles_styles() {
   $("#loading").empty();
   $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Locations</h4>`);
-  $("#line-chart").prepend("<h4>Crimes over 11/12 months</h4>");
+  $("#line-chart").prepend("<h4>Crimes over 5 or 6 months</h4>");
   $(".dc-select-menu").wrap(`<div id="dropdown-selector"></div>`);
 }
 

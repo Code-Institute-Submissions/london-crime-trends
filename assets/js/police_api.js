@@ -18,19 +18,11 @@ function fetchStreetCrimeData(lat, lng, col) {
     $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[2]}`),
     $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[3]}`),
     $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[4]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[5]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[6]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[7]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[8]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[9]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[10]}`),
-    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[11]}`)
+    $.getJSON(`${police_api_url}/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${yearmonth[5]}`)
   ).then(
-    function(response1,response2,response3,response4,response5,response6,
-             response7,response8,response9,response10,response11,response12,) {
+    function(response1,response2,response3,response4,response5,response6) {
       street_crimes = response1[0].concat(response2[0],response3[0],response4[0],response5[0],
-                                      response6[0],response7[0],response8[0],response9[0],
-                                      response10[0],response11[0],response12[0]);
+                                          response6[0]);
       renderGraphs(street_crimes, col);
     },
     function(errorResponse) {
