@@ -117,10 +117,15 @@ function refresh_dashboard_content() {
     // Clear graphs
     clear_divs();
     loading.html(`<img src="assets/images/loading.gif" width="100" />`);
-    // Render Map
-    initMap(lat, lon);
-    // Get Street Crime data and render graphs, referencing tube line colour for the line chart
-    col = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
-    var street_crimes = fetchStreetCrimeData(lat, lon, col);
+    // Render the map but only if we have a valid set of coordinates.
+    // If not, then don't bother to attempt fetching any data and report the issue to the user
+    initMap(lat, lon, `<h4>Location not found (either lattitude or longitude is not a number)</h4>`);
+    if (lat == null || lon == null || isNaN(lat) || isNaN(lon)) {
+      $("#loading").empty();
+    } else {
+      // Get Street Crime data and render graphs, referencing tube line colour for the line chart
+      col = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
+      var street_crimes = fetchStreetCrimeData(lat, lon, col);
+    }
   }
 }

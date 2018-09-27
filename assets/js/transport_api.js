@@ -42,7 +42,7 @@ function fetchLineStops(station_id) {
       var stations = response;
       // Render all retrieved stops in the drop down list
       $("#stops").append(`<div id="dropdown"><select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select></div>`);
-      $("#station_dropdown").append("<option value='0' disabled selected>Select a tube station</option>");
+      $("#station_dropdown").append(`<option value='0' lat="999" lon="999" disabled selected>Select a tube station</option>`);
       stations.forEach(function(element) {
         $("#station_dropdown").append(`<option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">${element.commonName}</option>`);
       });
