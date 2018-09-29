@@ -9,11 +9,12 @@ function fetchTFLdata(lineid) {
   $.when(
     $.getJSON(`${tfl_api_url}/Line/Mode/tube`)
   ).then(
-    function(response) {
-      var tube_lines = response;
-      tube_lines.forEach(function(element) {
-        if (element.id == lineid) {
-          fetchLineStops(element.id);
+    function(tube_lines) {
+      // Loop through each tube line returned in the TFL API response
+      // and retrieve all stops for the selected tube line via a second API call
+      tube_lines.forEach(function(tube_line) {
+        if (tube_line.id == lineid) {
+          fetchLineStops(tube_line.id);
         }
       });
     },
@@ -35,13 +36,19 @@ function fetchLineStops(line_id) {
   $.when(
     $.getJSON(`${tfl_api_url}/line/${line_id}/stoppoints`)
   ).then(
-    function(response) {
-      var stations = response;
+    function(stations) {
       // Render all retrieved stops in the drop down list
-      $("#stops").append(`<div id="dropdown"><select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select></div>`);
-      $("#station_dropdown").append(`<option value='0' lat="999" lon="999" disabled selected>Select a tube station</option>`);
+      $("#stops").append(`<div id="dropdown">
+                            <select class="form-control stations" onchange="refresh_dashboard_content();" id="station_dropdown"></select>
+                          </div>`);
+      $("#station_dropdown").append(`<option value='0' lat="999" lon="999" disabled selected>
+                                       Select a tube station
+                                     </option>`);
       stations.forEach(function(element) {
-        $("#station_dropdown").append(`<option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">${element.commonName}</option>`);
+        $("#station_dropdown").append(`
+            <option value="${element.commonName}" lat="${element.lat}" lon="${element.lon}">
+              ${element.commonName}
+            </option>`);
       });
       $("#dropdown").addClass("dropdown-" + $(".dashboard-sidebar .sidebar-button.active").attr('data-lineid'));
     },
