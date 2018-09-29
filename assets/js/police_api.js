@@ -18,10 +18,10 @@ function fetchStreetCrimeData(lat, lng, line_chart_colour) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        error_container.text('Street crime data not found');
+        error_heading.text('Street crime data not found');
       } else {
         console.log(errorResponse);
-        error_container.text(`Error: ${errorResponse.reponseJSON.message}`);
+        error_heading.text(`Error: ${errorResponse.reponseJSON.message}`);
       }
     }
   )

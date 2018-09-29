@@ -12,4 +12,4 @@ const map = $("#map");
 const station_dropdown = $("#station_dropdown");
 const station_dropdown_container = $("#stops");
 const loading = $("#loading");
-const error_container = $("#error h4");
+const error_heading = $("#error h4");

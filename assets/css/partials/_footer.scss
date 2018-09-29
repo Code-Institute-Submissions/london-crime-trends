@@ -11,8 +11,9 @@
 
 $i: 0;
 @each $line, $col in ($line-colours) {
-  .footer-tops.f#{$i} {
+  .footer-tops#{$i} {
     background-color: $col;
+    width: calc(100% / 11);
   }
   $i: $i + 1;
 }

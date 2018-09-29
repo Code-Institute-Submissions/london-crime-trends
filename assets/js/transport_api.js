@@ -19,10 +19,10 @@ function fetchTFLdata(lineid) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        error_container.text(`TFL data not found`);
+        error_heading.text(`TFL data not found`);
       } else {
         console.log(errorResponse);
-        error_container.text(`Error: ${errorResponse.reponseJSON.message}`);
+        error_heading.text(`Error: ${errorResponse.reponseJSON.message}`);
       }
     }
   )
@@ -47,10 +47,10 @@ function fetchLineStops(line_id) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        error_container.text(`No info found`);
+        error_heading.text(`No info found`);
       } else {
         console.log(errorResponse);
-        error_container.text(`Error: ${errorResponse.reponseJSON.message}`);
+        error_heading.text(`Error: ${errorResponse.reponseJSON.message}`);
       }
     }
   )

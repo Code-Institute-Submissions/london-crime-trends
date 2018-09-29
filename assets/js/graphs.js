@@ -37,9 +37,9 @@ function reset_titles() {
 }
 
 function load_titles_styles() {
-  $("#loading").empty();
-  $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Locations</h4>`);
-  $("#line-chart").prepend("<h4>Crimes - latest month available</h4>");
+  loading.empty();
+  pie_chart.prepend(`<h4 style="margin-top:50px;">Top 10 Locations</h4>`);
+  line_chart.prepend("<h4>Crimes - latest month available</h4>");
   $(".dc-select-menu").wrap(`<div id="dropdown-selector"></div>`);
 }
 

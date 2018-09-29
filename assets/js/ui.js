@@ -41,13 +41,6 @@ $(document).ready(function() {
     fetchTFLdata($(this).attr("data-lineid"));
   });
 
-  var num_lines = side_nav_button.length;
-  var div_width = (1/num_lines) * 100;
-
-  for (i = 0; i < num_lines; i++) {
-    footer.prepend(`<div class="footer-tops f` + i + `" style="width:` + div_width + `%"></div>`);
-  }
-
   var min_content_height = $(window).height() - header.outerHeight() - footer.outerHeight();
   main.css("min-height",min_content_height+"px");
 
@@ -68,8 +61,6 @@ $(document).ready(function() {
 
   $(window).resize(function() {
     resize_svg();
-    var min_content_height = $(window).height() - header.outerHeight() - footer.outerHeight();
-    main.css("min-height",min_content_height+"px");
   });
 
   // Bakerloo is selected by default when the page is loaded so we need to
