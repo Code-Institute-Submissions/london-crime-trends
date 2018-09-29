@@ -1,21 +1,6 @@
 // User Interface - adjust appearance of various elements within
 // the DOM in response to user activity
 
-// Reduce DOM queries by caching elements that are referenced several times
-const mobile_menu_button = $(".mob-menu .sidebar-button");
-const side_nav_button = $(".dashboard-sidebar .sidebar-button");
-const side_nav = $(".dashboard-sidebar");
-const dashboard_content =  $(".dashboard-content");
-const station_dropdown_container = $("#stops");
-const header = $("header");
-const footer = $("footer");
-const main = $("main");
-const pie_chart = $("#pie-chart");
-const line_chart = $("#line-chart");
-const map = $("#map");
-const station_dropdown = $("#station_dropdown");
-const loading = $("#loading");
-
 $(document).ready(function() {
   side_nav_button.click(function() {
     $("body").scrollTop(0);
@@ -93,12 +78,12 @@ $(document).ready(function() {
 });
 
 function clear_divs() {
-  $("#loading").empty();
+  loading.empty();
+  pie_chart.empty();
+  line_chart.empty();
+  map.empty();
   $("#crime-selector").empty();
   $("#force-selector").empty();
-  $("#pie-chart").empty();
-  $("#line-chart").empty();
-  $("#map").empty();
 }
 
 function reset_dashboard() {
@@ -109,11 +94,15 @@ function reset_dashboard() {
 }
 
 function refresh_dashboard_content() {
+  // Need to re-instatiate station drop down as it has been cleared and re-populated
+  // since the page was loaded
+  const station_dropdown = $("#station_dropdown");
+
   if (station_dropdown.val() != "0") {
     $("body").scrollTop(0);
     // Determine coordinates of the tube station
-    lat = parseFloat($("#station_dropdown").find('option:selected').attr("lat"));
-    lon = parseFloat($("#station_dropdown").find('option:selected').attr("lon"));
+    lat = parseFloat(station_dropdown.find('option:selected').attr("lat"));
+    lon = parseFloat(station_dropdown.find('option:selected').attr("lon"));
     // Clear graphs
     clear_divs();
     loading.html(`<img src="assets/images/loading.gif" width="100" />`);
@@ -121,11 +110,11 @@ function refresh_dashboard_content() {
     // If not, then don't bother to attempt fetching any data and report the issue to the user
     initMap(lat, lon, `<h4>Location not found (either lattitude or longitude is not a number)</h4>`);
     if (lat == null || lon == null || isNaN(lat) || isNaN(lon)) {
-      $("#loading").empty();
+      loading.empty();
     } else {
       // Get Street Crime data and render graphs, referencing tube line colour for the line chart
-      col = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
-      var street_crimes = fetchStreetCrimeData(lat, lon, col);
+      line_chart_colour = $(".dashboard-sidebar .sidebar-button.active").css("background-color");
+      var street_crimes = fetchStreetCrimeData(lat, lon, line_chart_colour);
     }
   }
 }

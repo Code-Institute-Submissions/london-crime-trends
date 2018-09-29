@@ -1,7 +1,7 @@
 // Extract TFL tube line and station details using the TFL (transport for london) api which returns
 // data in JSON format. Data includes tube line names and stations for each tube line along with
 // their coordinates
-var tfl_api_url = "https://api.tfl.gov.uk";
+const tfl_api_url = "https://api.tfl.gov.uk";
 
 // Fetch all tube lines from the TFL api. Then for each tube line, we need to fetch
 // all stops so that they can be presented to the user in the form of a dropdown list.
@@ -19,24 +19,21 @@ function fetchTFLdata(lineid) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        $("#error").html(`<h4>TFL data not found</h4>`);
-      } else if (errorResponse.status == 403) {
-        var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000);
-        $("#error").html(`<h4>Too many requests. Please wait until ${resetTime.toLocaleTimeString()}</h4>`);
+        error_container.text(`TFL data not found`);
       } else {
         console.log(errorResponse);
-        $("#error").html(`<h4>Error: ${errorResponse.reponseJSON.message}</h4>`);
+        error_container.text(`Error: ${errorResponse.reponseJSON.message}`);
       }
     }
   )
 }
 
 // Fetch all stations relevant to a specific tube line
-function fetchLineStops(station_id) {
+function fetchLineStops(line_id) {
   // Wait for the api request to return the stops for a specific tube line
   // before proceeding to populate the station drop down
   $.when(
-    $.getJSON(`https://api.tfl.gov.uk/line/${station_id}/stoppoints`)
+    $.getJSON(`${tfl_api_url}/line/${line_id}/stoppoints`)
   ).then(
     function(response) {
       var stations = response;
@@ -50,13 +47,10 @@ function fetchLineStops(station_id) {
     },
     function(errorResponse) {
       if (errorResponse.status == 404) {
-        $("#error").html(`<h4>No info found</h4>`);
-      } else if (errorResponse.status == 403) {
-        var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000);
-        $("#error").html(`<h4>Too many requests. Please wait until ${resetTime.toLocaleTimeString()}</h4>`);
+        error_container.text(`No info found`);
       } else {
         console.log(errorResponse);
-        $("#error").html(`<h4>Error: ${errorResponse.reponseJSON.message}</h4>`);
+        error_container.text(`Error: ${errorResponse.reponseJSON.message}`);
       }
     }
   )

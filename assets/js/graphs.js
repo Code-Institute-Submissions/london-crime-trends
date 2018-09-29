@@ -3,21 +3,25 @@
 // Initialise the cross filter which will allow graphs to adjust dynamically
 // when specific categories are selected by the user. Also call functions that
 // use dc to build the charts. Finally render the graphs.
-function renderGraphs(crime_data, col) {
+function renderGraphs(crime_data, line_chart_colour) {
   var ndx = crossfilter(crime_data);
 
   crime_data.forEach(function(d) {
-    d.date = new Date(d.month);
+    let ymd_array = d.month.split('-');
+    // As this project is purely for illustrative purposes,
+    // we're using a random day of the month for each instance of a street crime
+    // so that a line chart can be rendered for the month
+    d.date = new Date(ymd_array[0], ymd_array[1]-1, (Math.floor(Math.random() * 30) + 1));
     d.force = d.location_type + " " + d.location_subtype;
     // The phrase 'on or near' is used very repetitively in the data so
     // it is being removed to clean up the appearance of the pie chart legend
     d.street  = d.location.street.name.replace("On or near ","");
-  })
+  });
 
   // Build dropdowns and pie chart and line chart
   crime_selector(ndx);
   force_selector(ndx);
-  crime_line_chart(ndx, col);
+  crime_line_chart(ndx, line_chart_colour);
   crime_pie_chart(ndx);
 
   // Finally render the charts and their titles
@@ -35,7 +39,7 @@ function reset_titles() {
 function load_titles_styles() {
   $("#loading").empty();
   $("#pie-chart").prepend(`<h4 style="margin-top:50px;">Top 10 Locations</h4>`);
-  $("#line-chart").prepend("<h4>Crimes over 5 or 6 months</h4>");
+  $("#line-chart").prepend("<h4>Crimes - latest month available</h4>");
   $(".dc-select-menu").wrap(`<div id="dropdown-selector"></div>`);
 }
 
@@ -85,7 +89,7 @@ function crime_pie_chart(ndx) {
 
 // Line chart showing the volume of crimes over the last 5 or 6 months.
 // The police api does not always have up to date data - hence the variance of 5/6 months
-function crime_line_chart(ndx, col) {
+function crime_line_chart(ndx, line_chart_colour) {
   var dim = ndx.dimension(dc.pluck('date'));
   var group = dim.group();
 
@@ -109,7 +113,7 @@ function crime_line_chart(ndx, col) {
     .xUnits(d3.timeMonths)
     .elasticX(true)
     .elasticY(true)
-    .colors(col)
+    .colors(line_chart_colour)
     .transitionDuration(1000)
     .on("renderlet", function(chart){
         chart.selectAll("g.x text")

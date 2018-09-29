@@ -9,9 +9,9 @@ function initMap(lat_param=null, lng_param=null, errMsg='') {
   // report back to the user
   if (lat_param == null || lng_param == null || isNaN(lat_param) || isNaN(lng_param)) {
     //Temporarily display an error to report that the location was invalid
-    $("#error").html(errMsg);
+    error_container.text(errMsg);
     setTimeout(function(){
-      $("#error").html('');
+      error_container.text('');
     }, 5000);
   } else {
     var coords = {lat: lat_param, lng: lng_param};
