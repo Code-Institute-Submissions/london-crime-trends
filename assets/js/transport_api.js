@@ -1,7 +1,9 @@
 // Extract TFL tube line and station details using the TFL (transport for london) api which returns
 // data in JSON format. Data includes tube line names and stations for each tube line along with
 // their coordinates
-const tfl_api_url = "https://api.tfl.gov.uk";
+const app_id = 'af98ba75';
+const api_key = '2f417dd4be1cf9870d344c5455e94b2b';
+const tfl_api_url = `https://api.tfl.gov.uk?app_id=${app_id}&app_key=${api_key}`;
 
 // Fetch all tube lines from the TFL api. Then for each tube line, we need to fetch
 // all stops so that they can be presented to the user in the form of a dropdown list.
