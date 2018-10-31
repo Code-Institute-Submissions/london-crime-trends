@@ -3,13 +3,13 @@
 // their coordinates
 const app_id = 'af98ba75';
 const api_key = '2f417dd4be1cf9870d344c5455e94b2b';
-const tfl_api_url = `https://api.tfl.gov.uk?app_id=${app_id}&app_key=${api_key}`;
+const tfl_api_url = 'https://api.tfl.gov.uk';
 
 // Fetch all tube lines from the TFL api. Then for each tube line, we need to fetch
 // all stops so that they can be presented to the user in the form of a dropdown list.
 function fetchTFLdata(lineid) {
   $.when(
-    $.getJSON(`${tfl_api_url}/Line/Mode/tube`)
+    $.getJSON(`${tfl_api_url}/Line/Mode/tube?app_id=${app_id}&app_key=${api_key}`)
   ).then(
     function(tube_lines) {
       // Loop through each tube line returned in the TFL API response
@@ -36,7 +36,7 @@ function fetchLineStops(line_id) {
   // Wait for the api request to return the stops for a specific tube line
   // before proceeding to populate the station drop down
   $.when(
-    $.getJSON(`${tfl_api_url}/line/${line_id}/stoppoints`)
+    $.getJSON(`${tfl_api_url}/line/${line_id}/stoppoints?app_id=${app_id}&app_key=${api_key}`)
   ).then(
     function(stations) {
       // Render all retrieved stops in the drop down list
