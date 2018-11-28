@@ -28,6 +28,9 @@ function renderGraphs(crime_data, line_chart_colour) {
   reset_titles();
   dc.renderAll();
   load_titles_styles();
+
+  // Return amended crime data to facilitate Jasmine tests
+  return crime_data;
 }
 
 function reset_titles() {

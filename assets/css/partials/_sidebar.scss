@@ -4,6 +4,10 @@
   }
 }
 
+.dashboard-sidebar {
+  margin-top: 1rem;
+}
+
 .dashboard-sidebar button:nth-child(odd) {
   background-color: $sidebar-button-odd;
 }

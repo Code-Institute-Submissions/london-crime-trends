@@ -2,30 +2,27 @@
   border: none;
   border-bottom: 0;
   border-top: 0;
-  border-left: 6px solid $colour;
-  border-right: 6px solid $colour;
+  border-left: 9px solid $colour;
+  border-right: 9px solid $colour;
   border-radius: 0;
   box-sizing:border-box;
   display: block;
   transition: background-color 0.5s ease-in-out,
               color 0.5s ease-in-out;
   width: 100%;
-  color: $colour;
+  color: black;
   padding-top: 18px;
   padding-bottom: 6px;
-  @if (lightness($colour) > 40) {
-    text-shadow: 1px 1px 2px #000;
-  } @else {
-    text-shadow: 1px 1px 2px #000;
-  }
+
   &:hover, &.active {
-    background-color: $colour;
+    background-color: $logo-background;
     color: $text-hover-colour;
-    border-bottom: 6px solid darken($colour,10);
-    border-top: 6px solid darken($colour,10);
-    border-left: 0;
-    border-right: 0;
-    padding-top: 12px;
-    padding-bottom: 0;
+    border-bottom: 0;
+    border-top: 0;
+    border-left: 16px solid $colour;
+    border-right: 16px solid $colour;
+    padding-top: 18px;
+    padding-bottom: 6px;
+    box-sizing:border-box;
   }
 }

@@ -1,4 +1,5 @@
 // Reduce DOM queries by caching elements that are referenced several times
+
 const mobile_menu_button = $(".mob-menu .sidebar-button");
 const side_nav_button = $(".dashboard-sidebar .sidebar-button");
 const side_nav = $(".dashboard-sidebar");

@@ -20,7 +20,9 @@ main {
     color: $col;
   }
   .dropdown-#{$line} {
-    background-color: $col !important;
+    background-color: $logo-background !important;
+    box-shadow: 1px 1px 11px $col;
+
   }
 }
 

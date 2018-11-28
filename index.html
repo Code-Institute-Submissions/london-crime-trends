@@ -13,20 +13,40 @@
 </head>
 
 <body>
+
+  <!-- The header houses two navigation menus - one in the form of a vertical      -->
+  <!-- dropdown for mobile and the other as a left hand sidebar for larger screens -->
+  <!-- Each is mutually exclusive so only one will ever be shown at any one time   -->
+  <!-- according to screen width                                                   -->
+
   <header class="container-fluid p-0">
     <div class="row">
       <div class="col-12 col-lg-4 p-0 logo">
         <img src="assets/images/logo.svg" alt="Logo">
       </div>
+
+      <!-- This represents the mobile dropdown navigation menu, triggered by         -->
+      <!-- pressing the burger menu button. From there, users can select a tube line -->
+
       <div class="col-12 col-lg-8 pl-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary pb-0 pr-0">
           <h1 class="site-title d-none d-lg-inline-block">London Crime Trends</h1>
           <h1 class="site-title small-device d-inline-block d-lg-none">London<br>Crime<br>Trends</h1>
+
+          <!-- Button to toggle the slide down mobile navigation menu -->
+
           <button class="navbar-toggler d-inline-block d-lg-none mob-toggle" type="button" data-toggle="collapse" data-target="#togglemenu" aria-controls="togglemenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
+          <!-- Main content of the mobile navigation menu which is initially hidden upon page load -->
+
           <div class="collapse navbar-collapse" id="togglemenu">
             <ul class="navbar-nav mr-auto d-block d-lg-none mob-menu">
+
+              <!-- The data-lineid attribute is used by the UI JavaScript ui.js in order to  -->
+              <!-- dynamically style menu items that are clicked                             -->
+
               <li class="nav-item tube-stop">
                 <button type="button" class="btn sidebar-button bakerloo-button active" data-lineid="bakerloo">Bakerloo</button>
               </li>
@@ -68,6 +88,11 @@
 
   <main class="container-fluid pl-0">
     <div class="row">
+
+      <!-- This is the sidebar menu only visible for screen sizes wider than tablet portrait size -->
+      <!-- Its content is the same as the mobile menu but is shown in a left hand sidebar rather  -->
+      <!-- than a dropdown vertical menu                                                          -->
+
       <div class="col-12 col-lg-4 d-none d-lg-inline-block dashboard-sidebar pr-0">
         <button type="button" class="btn sidebar-button bakerloo-button active" data-lineid="bakerloo">Bakerloo</button>
         <button type="button" class="btn sidebar-button central-button" data-lineid="central">Central</button>
@@ -81,6 +106,12 @@
         <button type="button" class="btn sidebar-button victoria-button" data-lineid="victoria">Victoria</button>
         <button type="button" class="btn sidebar-button waterloo-city-button" data-lineid="waterloo-city">Waterloo & City</button>
       </div>
+
+      <!-- The dashboard houses the tube line station drop down, map local to the selected station  -->
+      <!-- Pie chart showing crime statistics and line chart showing all crimes over a month        -->
+      <!-- This mainly consists of placeholders which the dc/d3 based JavaScript will later         -->
+      <!-- reference to populate the placeholder content with charts                                -->
+
       <div class="col-12 col-lg-8 dashboard-content">
         <div class="row">
           <div class="col-12 col-md-6">
@@ -89,6 +120,10 @@
           <div class="col-12 col-md-6">
             <p class="about text-center text-md-right">Crimes within a 1 mile radius of the selected tube station. Data courtesy of data.police.uk and api.tfl.gov.uk</p>
           </div>
+
+          <!-- Pie charts will be rendered here dynamically showing pie charts of crime types -->
+          <!-- local to the selected station - based on data extracted from data.police.uk    -->
+
           <div class="col-12 col-md-6 col-lg-8 col-xl-6 dashboard-graphs">
             <div id="error"><h4></h4></div>
             <div id="loading"></div>
@@ -98,11 +133,19 @@
               <i class="fas fa-chart-pie placeholder-icon placeholder-icon-bakerloo"></i>
             </div>
           </div>
+
+          <!-- The dropdown above supplies latitude/longitude coordinates so that the Google -->
+          <!-- maps API can be queried to populate this section with a map local to the area -->
+
           <div class="col-12 col-md-6 col-lg-4 col-xl-6 justify-content-center">
             <div id="map">
               <i class="fas fa-map-marker-alt placeholder-icon placeholder-icon-bakerloo"></i>
             </div>
           </div>
+
+          <!-- This section will be dynamically populated with a line chart based on         -->
+          <!-- the currently selected station, showing crime figures over a one month period -->
+
           <div class="col-12 dashboard-graphs">
             <div id="line-chart" class="chart">
               <i class="fas fa-chart-area placeholder-icon placeholder-icon-bakerloo"></i>
@@ -112,6 +155,9 @@
       </div>
     </div>
   </main>
+
+  <!-- This set of divs is a purely cosmetic effect on the footer. The styling applied to these   -->
+  <!-- divs results in a thin line representing the colours of each london underground tube line  -->
 
   <footer>
     <div class="footer-tops footer-tops0"></div>

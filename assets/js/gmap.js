@@ -5,10 +5,14 @@
 // take care of rendering the map
 
 function initMap(lat_param=null, lng_param=null, errMsg='') {
+
   // Check for valid coordinates, otherwise abandon the map initialisation and
   // report back to the user
+
   if (lat_param == null || lng_param == null || isNaN(lat_param) || isNaN(lng_param)) {
+
     // Temporarily display an error to report that the location was invalid
+    
     error_heading.text(errMsg);
     setTimeout(function(){
       error_heading.text('');
