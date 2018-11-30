@@ -50,7 +50,8 @@ Various tests have been implemented using the Jasmine testing framework:
 - Confirm correct Police UK API request URLs
 - Confirm correct TFL API request URLs
 - Check that derived crime data has expected values 
-You can re-run the above tests live and view their results by visiting the [Jasmine spec runner page](jasmine/SpecRunner.html)
+A [screenshot of the test results](resources/Jasmine%20Test%20Results.png) is available and 
+all the source code used for the tests is in the [Jasmine directory](jasmine/).
 
 ### User Interaction Testing
 Verify that the layout adjusts correctly according to viewport size. Also that elements respond visually as expected to user clicks and hovers. Test details and results are available in [UI Tests.csv](resources/UI%20Tests.csv).
